@@ -1,0 +1,35 @@
+<% content_for :sub_title do %>
+Исходные данные
+<%end%>
+<div class='page-content index'>
+  <form class="form-horizontal" action="<%= ir_get_result_path %>" method="post" enctype="multipart/form-data" accept-charset="windows-1251">
+    <div class="control-group">
+      <label class="control-label">Отчет по теоретическим перебоям <span style="color:red; font-size:150%">*</span></label>
+      <div class="controls">
+        <input type="file" name="tp_report">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Отчет по физическим перебоям <span style="color:red; font-size:150%">*</span></label>
+      <div class="controls">
+        <input type="file" name="fp_report">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">План поставок <span style="color:red; font-size:150%">*</span></label>
+      <div class="controls">
+        <input type="file" name="pp_report">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Гамма отдела</label>
+      <div class="controls">
+        <input type="file" name="gl_report">
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="submit" class="btn btn-primary btn-large">Отправить</button>
+    </div>
+  <!--/form-->
+</div>

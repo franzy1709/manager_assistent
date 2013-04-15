@@ -1,0 +1,25 @@
+<% content_for :sub_title do %>
+Исходные данные
+<%end%>
+<div class='page-content index'>
+  <%= form_tag(ir_get_result_path(data_type: 'zip'),{class: 'form-horizontal', multipart: true, method: :post}) do %>
+  <form class="form-horizontal" action="<%= ir_get_result_path %>" method="post" enctype="multipart/form-data" accept-charset="windows-1251">
+    <div class="control-group">
+      <label class="control-label">Отдел<span style="color:red; font-size:150%">*</span></label>
+      <div class="controls">
+        <%= select_tag "rayon" , options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">ZIP-архив с отчетами<span style="color:red; font-size:150%">*</span></label>
+      <div class="controls">
+        <input type="file" name="zip_file" accept=".zip">
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="submit" class="btn btn-primary btn-large">Отправить</button>
+    </div>
+  <%end%>
+  <!--/form-->
+</div>
