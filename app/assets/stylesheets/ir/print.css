@@ -1,0 +1,30 @@
+html, body{
+	width: auto;
+	margin:0;
+	padding:0.5cm;
+
+}
+
+table{
+	#margin: 0 auto;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+#topbar, #sidebar, .printed-off{
+	display:none;
+}
+
+
+div.page-content{
+  background:white;
+}
+

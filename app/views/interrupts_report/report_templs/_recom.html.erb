@@ -1,0 +1,195 @@
+      <div class="ir-recommendations result-table">
+		<table><!-- Code [2] -->
+			<caption class="doc-header">Необходимо пересчитать товар и, в случае необходимости, провести коррекцию остатаков (<%= (rep2 = report.details.select{|key, val| val.report_codes.include? 2}).size %> позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=90></col><!-- Кол-во в БД -->
+			<col width=90></col><!-- Кол-во на полке -->
+			<col width=90></col><!-- Кол-во на ЭКСПО -->
+			<col width=90></col><!-- Кол-во в Stock'e -->
+			<col width=180></col><!-- Ответственный -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>Кол-во в БД</th>
+				<th>Кол-во на полке</th>
+				<th>Кол-во на ЭКСПО</th>
+				<th>Кол-во нa STOCK'e</th>
+				<th>Ответственный</th>
+			</tr>
+           <% rep2.each do |key, det| %>
+              <tr class="bordered">
+                  <td class="text-center"><%= det.product_code %></td>
+                  <td><%= det.product_name %></td>
+                  <td class="text-center"><%= det.stock_total %></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td></td>
+              </tr>
+            <%end%>
+		</table>
+		<table><!-- Code [4] -->
+			<caption class="doc-header">Необходимо выставить товар либо провести коррекцию остатаков, в случае расхождения с кол-вом в БД (<%= (rep4 = report.details.select{|key, val| val.report_codes.include? 4}).size %> позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=90></col><!-- Кол-во MIN -->
+			<col width=90></col><!-- Кол-во в БД -->
+			<col width=90></col><!-- Кол-во на полке -->
+			<col width=90></col><!-- Кол-во на ЭКСПО -->
+			<col width=90></col><!-- Кол-во в Stock'e -->
+			<col width=90></col><!-- Кол-во в заказе -->
+			<col width=180></col><!-- Ответственный -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>Кол-во MIN</th>
+				<th>Кол-во в БД</th>
+				<th>Кол-во на полке</th>
+				<th>Кол-во на ЭКСПО</th>
+				<th>Кол-во нa STOCK'e</th>
+				<th>Кол-во в заказе</th>
+				<th>Ответственный</th>
+			</tr>
+           <% rep4.each do |key, det| %>
+              <tr class="bordered">
+                  <td class="text-center"><%= det.product_code %></td>
+                  <td><%= det.product_name %></td>
+                  <td class="text-center"><%= det.product_info.stock_min %></td>
+                  <td class="text-center"><%= det.stock_total %></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"></td>
+                  <td class="text-center"><%= det.q_ordered %></td>
+                  <td></td>
+              </tr>
+            <%end%>
+		</table>
+		<table style="display:none"><!-- Code [10] && pp_records.empty? -->
+			<caption class="doc-header">Выяснить причину задержки поставки (N позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=90></col><!-- Кол-во в заказе -->
+			<col width=100></col><!-- Номер заказа -->
+			<col width=120></col><!-- Код пост-ка -->
+			<col width=270></col><!-- Название пост-ка -->
+			<col width=180></col><!-- Ответственный -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>Кол-во в заказе</th>
+				<th>Номер заказа</th>
+				<th>Код пост-ка</th>
+				<th>Название поставщика</th>
+				<th>Ответственный</th>
+			</tr>
+			<tr class="bordered">
+				<td class="text-center">s</td>
+				<td>s</td>
+				<td class="text-center">s</td>
+				<td class="text-center">s</td>
+				<td class="text-center">s</td>
+				<td >s</td>
+				<td class="text-center">s</td>
+			</tr>
+		</table>
+		<table><!-- Code [3]-[1] && top=="1" -->
+			<caption class="doc-header">Необходимо выставить ценники (<%= (rep12 = report.details.select{|key, val| val.report_codes.include? 12}).size %> позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=90></col><!-- ТОП -->
+			<col width=180></col><!-- Ответственный -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>ТОП</th>
+				<th>Ответственный</th>
+			</tr>
+            <% rep12.each do |key, det| %>
+              <tr class="bordered">
+                  <td class="text-center"><%= det.product_code %></td>
+                  <td><%= det.product_name %></td>
+                  <td class="text-center"><%= det.top_restocking %></td>
+                  <td class="text-center"></td>
+              </tr>
+            <%end%>
+		</table>
+		<table><!-- Code [10] -->
+			<caption class="doc-header">Необходимо убрать ценники (<%= (rep8 = report.details.select{|key, val| val.report_codes.include? 8}).size %> позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=90></col><!-- ТОП -->
+			<col width=180></col><!-- Ответственный -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>ТОП</th>
+				<th>Ответственный</th>
+			</tr>
+            <% rep8.each do |key, det| %>
+              <tr class="bordered">
+                  <td class="text-center"><%= det.product_code %></td>
+                  <td><%= det.product_name %></td>
+                  <td class="text-center"><%= det.top_restocking %></td>
+                  <td class="text-center"></td>
+              </tr>
+            <%end%>
+		</table>
+		<table><!-- Code [9] -->
+			<caption class="doc-header">Необходимо проверить наличие таблички "Извините, товар временно отсутствует" и, в случае необходимости, выставить (<%= (rep_to = report.details.select{|key, val| !val.report_codes.include?(4) && !val.report_codes.include?(8)}).size %> позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=140></col><!-- Дата записи в плане поставок -->
+			<col width=120></col><!-- Номер заказа -->
+			<col width=200></col><!-- Место поставки -->
+			<col width=200></col><!-- Статус заказа -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>Дата записи в плане поставок</th>
+				<th>Номер заказа</th>
+				<th>Место поставки</th>
+				<th>Статус поставки</th>
+			</tr>
+            <% rep_to.each do |key, det| %>
+              <tr class="bordered">
+                  <td class="text-center"><%= det.product_code %></td>
+                  <td><%= det.product_name %></td>
+                  <td class="text-center"><%= (det.pp_records.max{|d1,d2| d1.supply_date<=>d2.supply_date}.supply_date unless det.pp_records.empty?)  || 'Нет записи'%></td>
+                  <td class="text-center"><%= det.order_num  %></td>
+                  <td class="text-center"><%= det.pp_records.max{|d1,d2| d1.supply_date<=>d2.supply_date}.mesto unless det.pp_records.empty?%></td>
+                  <td class="text-center"><%= det.pp_records.max{|d1,d2| d1.supply_date<=>d2.supply_date}.status unless det.pp_records.empty?%></td>
+              </tr>
+            <%end%>
+		</table>
+		<table><!-- Code [9] -->
+			<caption class="doc-header">Необходимо сделать заказ (<%= (rep9 = report.details.select{|key, val| val.report_codes.include? 9}).size %> позиций)</caption>
+			<col width=100></col><!-- LM-код -->
+			<col width=270></col><!-- Название -->
+			<col width=90></col><!-- Кол-во в БД -->
+			<col width=90></col><!-- Кол-во MIN -->
+			<col width=120></col><!-- Код пост-ка -->
+			<col width=270></col><!-- Название пост-ка -->
+			<col width=180></col><!-- Ответственный -->
+			<tr class="table-header bordered">
+				<th>LM-код</th>
+				<th>Название</th>
+				<th>Кол-во в БД</th>
+				<th>Кол-во MIN</th>
+				<th>Код пост-ка</th>
+				<th>Название поставщика</th>
+				<th>Ответственный</th>
+			</tr>
+            <% rep9.each do |key, det| %>
+              <tr class="bordered">
+                  <td class="text-center"><%= det.product_code %></td>
+                  <td><%= det.product_name %></td>
+                  <td class="text-center"><%= det.stock_total %></td>
+                  <td class="text-center"><%= det.product_info.stock_min %></td>
+                  <td class="text-center"><%= det.suppl_code %></td>
+                  <td class="text-center"><%= det.suppl_name %></td>
+                  <td class="text-center"></td>
+              </tr>
+            <%end%>
+		</table>
+      </div>

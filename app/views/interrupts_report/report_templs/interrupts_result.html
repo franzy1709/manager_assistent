@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Manager Assistent: Отчеты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="../css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="../css/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../css/my.css" media="screen, print">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/my.css">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div id="topbar" class="navbar navbar-inverse navbar-fixed-top printed-off">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="../index.html#">Manager Assistent</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              <a href="login/sign_in.html" class="navbar-link">Войти</a> |
+              <a href="login/registration.html" class="navbar-link">Зарегистрироваться</a>
+            </p>
+            <ul class="nav">
+            	<li><a href="index.html">Отчеты</a></li>
+              <li><a href="#">Отчет по перебоям</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div id="sidebar" class="span2 printed-off">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li><a href="../index.html">Главная</a></li>
+              <li class="nav-header">Отчеты</li>
+              <li class="active"><a href="#">Отчет по перебоям</a></li>
+              <li class="nav-header">Настройки</li>
+              <li><a href="../settings/gamma.html#">Гамма</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span10">
+         <div class="caption printed-off">
+            <h3>Отчет по перебоям в отделе</h3>
+            <ul class="breadcrumb">
+              <li><a href="interrupts_form.html">Форма</a> / </li>
+              <li class="active">Отчет</li>
+            </ul>
+         </div>
+
+         <ul class="nav nav-tabs printed-off" id="myTab">
+           <li><a href="#recom"  data-toggle="tab">Рекомендации для отдела</a></li>
+           <li class="active"><a href="#ovd" data-toggle="tab">Форма для отдела ввода данных</a></li>
+         </ul>
+
+         <div class="tab-content">
+           <div class="tab-pane printed" id="recom">HOME</div>
+           <div class="tab-pane active printed" id="ovd">
+
+
+<table x:str border=0 cellpadding=0 cellspacing=0 width=950 style='border-collapse:
+ collapse;table-layout:fixed;width:712pt; margin:0 auto;'>
+ <col width=9 style='width:7pt'>
+ <col width=88 style='width:66pt'>
+ <col width=81 style='width:61pt'>
+ <col width=47 style='width:35pt'>
+ <col width=355 style='width:266pt' align="center">
+ <col width=114 style='width:85pt' align="center">
+ <col width=118 style='width:89pt'  align="center">
+ <col width=138 style='width:103pt'>
+ <tr class="doc-header">
+  <td style='height:22.8pt;width:7pt'></td>
+  <td colspan=7 class="text-center" >
+    Ежедневный отчет по перебоям в отделе №
+  </td>
+ </tr>
+ <tr height=10 style='height:7.8pt'>
+  <td ></td>
+ </tr>
+ <tr class="table-header">
+  <td class="first white"></td>
+  <td colspan=4 class="bordered">Перебои</td>
+  <td class="bordered text-center">ТОП 1 в запасе</td>
+  <td class="bordered text-center">Формула</td>
+  <td class="bordered text-center" >Количество</td>
+ </tr>
+ <tr class="table-subheader">
+  <td class="first white"></td>
+  <td colspan=4 class="bordered">
+    Теоретические перебои
+  </td>
+  <td class="bordered text-center">Итого: кол-во</td>
+  <td class="bordered text-center report-code">[1]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <!--td class=xl32></td-->
+  <td colspan=4 class="bordered" style='padding-left:66pt;'>
+    Втом числе с <font class="font13">отрицательным запасом</font><font class="font12">:</font>
+  </td>
+  <td class="bordered text-center">Кол-во</td>
+  <td class="bordered text-center report-code">[2]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr class="yellow-separator">
+  <td class="first white"></td>
+  <td class="bordered" colspan=7>&nbsp;</td>
+ </tr>
+ <tr class="table-subheader">
+  <td class="first white"></td>
+  <td colspan=4 class="bordered">
+    Физические перебои
+  </td>
+  <td class="bordered text-center">Итого: кол-во</td>
+  <td class="bordered text-center report-code">[3]=[4]+[5]+[6]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td rowspan=9 class="bordered"></td>
+  <td colspan=3 class="bordered">
+    Физические перебои <font class="font13">с запасом</font> больше, чем на одну покупку:</td>
+  <td class="bordered text-center">Кол-во</td>
+  <td class="bordered text-center report-code">[4]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td colspan=6 class="bordered">
+    Физические перебои <font class="font13">без запаса</font>:
+  </td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td colspan=3 class="bordered" style="padding-left:61pt">
+    Физические перебои <font class="font13">С заказом</font>
+  </td>
+  <td class="bordered text-center">Итого: кол-во</td>
+  <td class="bordered text-center report-code">[5]=[10]+[11]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="firs white"></td>
+  <td class=xl43>&nbsp;</td>
+  <td class=xl45>&nbsp;</td>
+  <td class="bordered">Физические перебои <font class="font13">с заказом</font>
+  по причине недопоставки по вине поставщика</td>
+  <td class="bordered text-center"40>Кол-во</td>
+  <td class="bordered text-center report-code">[10]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td rowspan=5 class="bordered">&nbsp;</td>
+  <td colspan=2 class="bordered" style="padding-left:35pt;">
+    Физические перебои <font class="font13">с заказом</font> ожидаемые в ближайшее время
+  </td>
+  <td class="bordered text-center">Кол-во</td>
+  <td class="bordered text-center report-code">[11]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td colspan=2 class="bordered">
+    Физические перебои <font class="font13">без заказа</font>
+  </td>
+  <td class="bordered text-center">Итого: кол-во</td>
+  <td class="bordered text-center report-code">[6]=[7]+[8]+[9]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td rowspan=3 class="bordered">&nbsp;</td>
+  <td class="bordered">Физичесие перебои <font class="font13">без заказа</font>по причине большого франко</td>
+  <td class="bordered text-center">Кол-во</td>
+  <td class="bordered text-center report-code">[7]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td class="bordered">
+    Физичесие перебои <font class="font13">без заказа</font> по причине перевода в ТОП 0
+  </td>
+  <td class="bordered text-center">Кол-во</td>
+  <td class="bordered text-center report-code">[8]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td class="first white"></td>
+  <td class="bordered">Физичесие перебои <font class="font13">без заказа</font> по причине того, что отдел не сделал заказ</td>
+  <td class="bordered text-center">Кол-во</td>
+  <td class="bordered text-center report-code">[9]</td>
+  <td class="bordered text-center"></td>
+ </tr>
+ <tr>
+  <td colspan=8 style='height:10.0pt;'></td>
+ </tr>
+ <tr>
+  <td class="firs white"></td>
+  <td colspan=7 class=" text-center">
+    Документ должен быть заполнен каждый будний день и отнесен оператору по вводу данных  до 11 часов утра</td>
+ </tr>
+</table>
+
+
+           </div>
+         </div>
+
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/my.js"></script>
+</body></html>

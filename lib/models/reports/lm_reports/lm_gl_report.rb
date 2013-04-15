@@ -1,0 +1,2 @@
+class LmGlReport < GammaList
+end

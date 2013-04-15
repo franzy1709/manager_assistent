@@ -1,0 +1,19 @@
+<%= link_to "Назад", ir_index_path, class:"btn btn-info btn-large pull-left printed-off", style: "margin-left: 1ex" %>
+<% content_for :sub_title do %>
+  Результат обработки
+<%end%>
+<div class='page-content result' >
+         <ul class="nav nav-tabs printed-off" id="myTab">
+           <li class="active"><a href="#recom"  data-toggle="tab">Рекомендации для отдела</a></li>
+           <li><a href="#ovd" data-toggle="tab">Форма для отдела ввода данных</a></li>
+         </ul>
+
+         <div class="tab-content">
+           <div class="tab-pane active printed" id="recom">
+             <%=render( partial: 'interrupts_report/report_templs/recom', locals:{report: report}) if report.is_a? LmInterruptsReport %>
+           </div>
+           <div class="tab-pane printed" id="ovd">
+             <%=render( partial: 'interrupts_report/report_templs/ovd', locals:{report: report}) if report.is_a? LmInterruptsReport %>
+           </div>
+         </div>
+</div>

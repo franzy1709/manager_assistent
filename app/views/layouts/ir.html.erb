@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ManagerAssistent</title>
+  <%= stylesheet_link_tag    "application", :media => "screen" %>
+  <%= stylesheet_link_tag    "ir/print", :media => "print" %>
+  <%= stylesheet_link_tag    "ir/my", :media => "screen, print" %>
+  <%= stylesheet_link_tag    "bootstrap_and_overrides", :media => "screen" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div style="width:100%;text-align:center">
+    <h2 class="printed-off">Отчет по перебоям в отделе</h2>
+    <h4 class="printed-off"> <%= yield :sub_title %> </h4>
+  </div>
+  <% if flash[:debug] %>
+    <%= debug flash[:debug] %>
+  <%end%>
+    <%= yield %>
+</body>
+</html>
