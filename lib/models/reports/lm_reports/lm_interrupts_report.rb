@@ -29,6 +29,7 @@ class LmInterruptsReport < ConsolidatedReport
       } unless det.order_num.empty?
       pp_records ||= []
 
+      report_date = options[:report_date] || Date.today
 
       first_date = ppr.details.select{|ds|
         ds.order_num.match(/#{det.order_num}/)
@@ -39,27 +40,45 @@ class LmInterruptsReport < ConsolidatedReport
 
       det_hash[:product_info] = product_info
 
-      r_codes = [3]
+      r_codes = [3] # код отчета 3 - позиция из списка физических перебоев
 
-      if det.stock_total > 0
-        r_codes.push 4
-        if (det.stock_total <= product_info.stock_min) && det.order_num.empty?
-          r_codes.push 9
+      #if det.stock_total > 0 # проверка на наличие товара на остатке
+      if det.stock_total > product_info.reserve_expo
+        r_codes.push 4 #код 4 - товар, имеющий положительный остаток
+        r_codes.push 104 # код 104 - товар, который необходимо выставить
+        #r_code = 4
+        if ((det.stock_total) <= product_info.stock_min+product_info.reserve_expo) && det.order_num.empty?
+          r_codes.push 109 # код 109 - необходимо сделать заказ
+          #r_code = 9
         end
+        #r_codes.push r_code
       else
-        if det.order_num.empty?
-          r_codes.push 6
-          if det.top_restocking != '1'
-            r_codes.push 8
+        if det.stock_total > 0
+          r_codes.push 104 # код 104 - товар, который необходимо выставить
+        end
+        # если при прохождении алгоритма попали сюда,
+        # значит запаса товара нет
+        if det.order_num.empty? #проверка на наличие заказа
+          # заказа нет
+          r_codes.push 6 # Код 6 - все товары без заказа
+          #if det.top_restocking != '1'
+          if det.top_restocking[/^(0|2)$/] # если товар в ТОПе 0 или 2
+            r_codes.push 8 # Код 8 - физический перебой с ТОП 0 или 2
           else
-            r_codes.push 9
+            r_codes.push 9    # Код 9 - физический перебой без заказа и ТОП 1
+            r_codes.push 109  # Код 109 - необходимо сделать заказ
           end
         else
-          r_codes.push 5
-          if (det.cmd_date && det.cmd_date < first_date)
-            r_codes.push 10
-          elsif !pp_records.empty?
-            r_codes.push 11
+          # если попали сюда, значит у позиции есть заказ
+          r_codes.push 5 # код 5 - физический перебой с заказом
+          if (det.cmd_date && det.cmd_date <= (first_date || report_date)) # соотношение даты ожидания поставки с наибоее
+                                                                          # ранней датой записи в плане поставок,
+                                                                          # либо c датой составения отчета
+            # если дата ожидания поставки меньше, любой из сравниваемых дат
+            r_codes.push 10 # код 10 - поставщик задержал поставку
+          #elsif !pp_records.empty?
+          else
+            r_codes.push 11 # код 11 - у поставщика есть еще время по условиям договора
           end
         end
       end
@@ -92,13 +111,13 @@ class LmInterruptsReport < ConsolidatedReport
 
       det_hash[:pp_records] = pp_records
 
-      r_codes = [1]
+      r_codes = [1] # код 1 - позиция из списка теоретических перебоев
 
-      if  det.order_num.empty?
-        r_codes.push 9
+      if  det.order_num.empty? # проверка на наличие заказа
+        r_codes.push 109 # код 109 - необходимо сделать заказ
       end
 
-      r_codes.push(2) if det.stock_total < 0
+      r_codes.push(2) if det.stock_total < 0 # код 2 - отрицательный остаток
 
       if !@details[det.product_code.to_sym].blank?
 

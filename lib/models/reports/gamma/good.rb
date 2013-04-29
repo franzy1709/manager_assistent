@@ -13,7 +13,7 @@ class Good < LmReportDetail
         @data_hash[:gamma_group] ||= ''           # гамма (A, B, P, S)
         @data_hash[:top_restocking] ||= ''           # топ пополнения (1, 2, 0)
         @data_hash[:restocking_type] ||= ''         # вид пополнения (M,S)
-        @data_hash[:reserve_exposure] ||= ''        # резерв на экспозицию
+        @data_hash[:reserve_expo] ||= 0        # резерв на экспозицию
         @data_hash[:stock_min] ||= 0          # минимальный запас
         @data_hash[:suppl_code] ||= ''              # код поставщика
         @data_hash[:cost_price] ||= 0        # закупочная цена
@@ -29,7 +29,7 @@ class Good < LmReportDetail
         @data_hash[:gamma_group] = data.attributes['product_gam'] || ''           # гамма (A, B, P, S)
         @data_hash[:top_restocking] = data.attributes['top_repl'] || ''           # топ пополнения (1, 2, 0)
         @data_hash[:restocking_type] = data.attributes['textbox33'].to_s[/\b\S*\b/] || ''         # вид пополнения (M,S)
-        @data_hash[:reserve_exposure] = data.attributes['textbox74'].to_i || 0        # резерв на экспозицию
+        @data_hash[:reserve_expo] = data.attributes['textbox74'].to_i || 0        # резерв на экспозицию
         @data_hash[:stock_min] = data.attributes['textbox82'].to_i           # минимальный запас
         @data_hash[:suppl_code] = data.attributes['textbox19'] || ''              # код поставщика
         @data_hash[:cost_price] = data.attributes['cost_price'].to_f        # закупочная цена

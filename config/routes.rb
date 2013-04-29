@@ -3,6 +3,7 @@ Ma001::Application.routes.draw do
   get   "/(.:format)" => "interrupts_report#index", as: :ir_index
   post  "/get_result(.:format)" => "interrupts_report#get_result", as: :ir_get_result
   get   "/result(.:format)" => "interrupts_report#result", as: :ir_result
+  get   "/result/print/:report(.:format)" => "interrupts_report#print", as: :ir_print
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

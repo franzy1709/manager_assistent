@@ -25,7 +25,7 @@
     <td class="bordered text-center">Формула</td>
     <td class="bordered text-center" >Количество</td>
    </tr>
-   <tr class="table-subheader">
+   <tr class="table-subheader switcher" data-target="#sw1">
     <td class="first white"></td>
     <td colspan=4 class="bordered">
       Теоретические перебои
@@ -33,10 +33,16 @@
     <td class="bordered text-center">Итого: кол-во</td>
     <td class="bordered text-center report-code">[1]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 1}.size %>
+      <%= (details = report.details.select{|key, det| det.report_codes.include? 1}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw1">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw2">
     <td class="first white"></td>
     <!--td class=xl32></td-->
     <td colspan=4 class="bordered" style='padding-left:66pt;'>
@@ -45,14 +51,20 @@
     <td class="bordered text-center">Кол-во</td>
     <td class="bordered text-center report-code">[2]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 2}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 2}).size %>
+    </td>
+   </tr>
+   <tr class="hide printed-off" id="sw2">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
     </td>
    </tr>
    <tr class="yellow-separator">
     <td class="first white"></td>
     <td class="bordered" colspan=7>&nbsp;</td>
    </tr>
-   <tr class="table-subheader">
+   <tr class="table-subheader switcher" data-target="#sw3">
     <td class="first white"></td>
     <td colspan=4 class="bordered">
       Физические перебои
@@ -60,39 +72,60 @@
     <td class="bordered text-center">Итого: кол-во</td>
     <td class="bordered text-center report-code">[3]=[4]+[5]+[6]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 3}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 3}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw3">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw4">
     <td class="first white"></td>
-    <td rowspan=9 class="bordered"></td>
+    <td class="bordered"></td>
     <td colspan=3 class="bordered">
       Физические перебои <font class="font13">с запасом</font> больше, чем на одну покупку:</td>
     <td class="bordered text-center">Кол-во</td>
     <td class="bordered text-center report-code">[4]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 4}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 4}).size %>
+    </td>
+   </tr>
+   <tr class="hide printed-off" id="sw4">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
     </td>
    </tr>
    <tr>
     <td class="first white"></td>
+    <td class="bordered"></td>
     <td colspan=6 class="bordered">
       Физические перебои <font class="font13">без запаса</font>:
     </td>
    </tr>
-   <tr>
+   <tr class="switcher" data-target="#sw5">
     <td class="first white"></td>
+    <td class="bordered"></td>
     <td colspan=3 class="bordered" style="padding-left:61pt">
       Физические перебои <font class="font13">С заказом</font>
     </td>
     <td class="bordered text-center">Итого: кол-во</td>
     <td class="bordered text-center report-code">[5]=[10]+[11]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 5}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 5}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw5">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw6">
     <td class="firs white"></td>
+    <td class="bordered"></td>
     <td class=xl43>&nbsp;</td>
     <td class=xl45>&nbsp;</td>
     <td class="bordered">Физические перебои <font class="font13">с заказом</font>
@@ -100,60 +133,107 @@
     <td class="bordered text-center"40>Кол-во</td>
     <td class="bordered text-center report-code">[10]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 10}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 10}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw6">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw7">
     <td class="first white"></td>
-    <td rowspan=5 class="bordered">&nbsp;</td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
     <td colspan=2 class="bordered" style="padding-left:35pt;">
       Физические перебои <font class="font13">с заказом</font> ожидаемые в ближайшее время
     </td>
     <td class="bordered text-center">Кол-во</td>
     <td class="bordered text-center report-code">[11]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 11}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 11}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw7">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw8">
     <td class="first white"></td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
     <td colspan=2 class="bordered">
       Физические перебои <font class="font13">без заказа</font>
     </td>
     <td class="bordered text-center">Итого: кол-во</td>
     <td class="bordered text-center report-code">[6]=[7]+[8]+[9]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 6}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 6}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw8">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw9">
     <td class="first white"></td>
-    <td rowspan=3 class="bordered">&nbsp;</td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
     <td class="bordered">Физичесие перебои <font class="font13">без заказа</font>по причине большого франко</td>
     <td class="bordered text-center">Кол-во</td>
     <td class="bordered text-center report-code">[7]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 7}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 7}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw9">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw10">
     <td class="first white"></td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
     <td class="bordered">
       Физичесие перебои <font class="font13">без заказа</font> по причине перевода в ТОП 0
     </td>
     <td class="bordered text-center">Кол-во</td>
     <td class="bordered text-center report-code">[8]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include? 8}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include? 8}).size %>
     </td>
    </tr>
-   <tr>
+   <tr class="hide printed-off" id="sw10">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
+    </td>
+   </tr>
+   <tr class="switcher" data-target="#sw11">
     <td class="first white"></td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
+    <td class="bordered"></td>
     <td class="bordered">Физичесие перебои <font class="font13">без заказа</font> по причине того, что отдел не сделал заказ</td>
     <td class="bordered text-center">Кол-во</td>
     <td class="bordered text-center report-code">[9]</td>
     <td class="bordered text-center">
-      <%= report.details.select{|key, det| det.report_codes.include?(9) && det.report_codes.include?(3)}.size %>
+      <%= (details=report.details.select{|key, det| det.report_codes.include?(9) && det.report_codes.include?(3)}).size %>
+    </td>
+   </tr>
+   <tr class="hide printed-off" id="sw11">
+    <td></td>
+    <td colspan=7>
+      <%= render partial:"interrupts_report/report_templs/details", object: details %>
     </td>
    </tr>
    <tr style="height:5pt">

@@ -1,0 +1,52 @@
+<table border=1 bordercolor="black" style="margin: 10px;">
+  <thead>
+    <tr>
+      <td>
+        №
+      </td>
+      <td>
+        LM
+      </td> 
+      <td>
+        Название
+      </td>
+      <td>
+        ТОП / Гамма
+      </td>
+      <td>
+        Запас
+      </td>
+      <td>
+        Виз. MIN
+      </td>
+      <td>
+        Запас ЭКСПО
+      </td>
+      <td>
+        № заказа
+      </td>
+      <td>
+        Дата по договору
+      </td>
+      <td>
+        Первая дата записи
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% details.each_with_index do |(key,det), c| %>
+    <tr>
+      <td><%= c+1 %></td>
+      <td><%= det.product_code%></td>
+      <td><%= det.product_name %></td>
+      <td><%= det.top_restocking %> / <%= det.product_info.gamma_group unless det.product_info.nil? %></td>
+      <td><%= det.stock_total %></td>
+      <td><%= det.product_info.stock_min unless det.product_info.nil? %></td>
+      <td><%= det.product_info.reserve_expo unless det.product_info.nil? %></td>
+      <td><%= det.order_num  %></td>
+      <td><%= det.cmd_date %></td>
+      <td><%= (det.pp_records.min{|d1,d2| d1.supply_date<=>d2.supply_date}.supply_date unless det.pp_records.empty?) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

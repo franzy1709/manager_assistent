@@ -10,9 +10,15 @@
 
          <div class="tab-content">
            <div class="tab-pane active printed" id="recom">
+            <div class="btn-group printed-off pull-right" style="margin:10px">
+              <%= link_to "Версия для печати", ir_print_path(report:"recom",format:"xls"), :class => "btn" %>
+            </div>
              <%=render( partial: 'interrupts_report/report_templs/recom', locals:{report: report}) if report.is_a? LmInterruptsReport %>
            </div>
            <div class="tab-pane printed" id="ovd">
+            <div class="btn-group printed-off pull-right" style="margin:10px">
+              <%= link_to "Версия для печати", ir_print_path(report:"ovd",format:"xls"), :class => "btn" %>
+            </div>
              <%=render( partial: 'interrupts_report/report_templs/ovd', locals:{report: report}) if report.is_a? LmInterruptsReport %>
            </div>
          </div>

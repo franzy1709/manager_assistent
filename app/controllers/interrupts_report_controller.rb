@@ -51,8 +51,27 @@ class InterruptsReportController < ApplicationController
 
   #GET /ir/result
   def result
-    ir = flash[:interrupts_report]
+    flash[:interrupts_report] = ir = flash[:interrupts_report]
     #flash[:debug]=ir.details
     render locals: {report: ir}
+  end
+
+  #GET /ir/print/:report(.:format)
+  def print
+    flash[:interrupts_report] = ir = flash[:interrupts_report]
+    data=""
+    unless ir.nil?
+      case params[:report]
+      when "recom"
+        data = render_to_string "interrupts_report/report_templs/xls/recom",layout:nil, locals: {report: ir}
+      when "ovd"
+        data = render_to_string "interrupts_report/report_templs/xls/ovd",layout:nil, locals: {report: ir}
+      else
+        redirect_to root_path
+      end
+      send_data data, file_name: "#{params[:report]}.#{params[:format]}"
+    else
+      redirect_to root_path
+    end
   end
 end

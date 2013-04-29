@@ -1,4 +1,4 @@
-  <div class="ir-recommendations result-table">
+      <div class="ir-recommendations result-table">
 		<table><!-- Code [2] -->
 			<caption class="doc-header">Необходимо пересчитать товар и, в случае необходимости, провести коррекцию остатаков (<%= (rep2 = report.details.select{|key, val| val.report_codes.include? 2}).size %> позиций)</caption>
 			<col width=100></col><!-- LM-код -->
@@ -30,7 +30,7 @@
             <%end%>
 		</table>
 		<table><!-- Code [4] -->
-			<caption class="doc-header">Необходимо выставить товар либо провести коррекцию остатаков, в случае расхождения с кол-вом в БД (<%= (rep4 = report.details.select{|key, val| val.report_codes.include? 104}).size %> позиций)</caption>
+			<caption class="doc-header">Необходимо выставить товар либо провести коррекцию остатаков, в случае расхождения с кол-вом в БД (<%= (rep4 = report.details.select{|key, val| val.report_codes.include? 4}).size %> позиций)</caption>
 			<col width=100></col><!-- LM-код -->
 			<col width=270></col><!-- Название -->
 			<col width=90></col><!-- Кол-во MIN -->
@@ -65,8 +65,8 @@
               </tr>
             <%end%>
 		</table>
-		<table><!-- Code [10] && pp_records.empty? -->
-			<caption class="doc-header">Выяснить причину задержки поставки (<%= (rep101 = report.details.select{|key, val| val.report_codes.include?(10)&&val.pp_records.empty?}).size %> позиций)</caption>
+		<table style="display:none"><!-- Code [10] && pp_records.empty? -->
+			<caption class="doc-header">Выяснить причину задержки поставки (N позиций)</caption>
 			<col width=100></col><!-- LM-код -->
 			<col width=270></col><!-- Название -->
 			<col width=90></col><!-- Кол-во в заказе -->
@@ -81,19 +81,17 @@
 				<th>Номер заказа</th>
 				<th>Код пост-ка</th>
 				<th>Название поставщика</th>
-				<th>Дата по договору</th>
+				<th>Ответственный</th>
 			</tr>
-			<% rep101.each do |key, det| %>
 			<tr class="bordered">
-				<td class="text-center"><%= det.product_code %></td>
-				<td><%= det.product_name %></td>
-				<td class="text-center"><%= det.q_ordered %></td>
-				<td class="text-center"><%= det.order_num %></td>
-				<td class="text-center"><%= det.suppl_code %></td>
-				<td ><%= det.suppl_name %></td>
-				<td class="text-center"><%= det.cmd_date %></td>
+				<td class="text-center">s</td>
+				<td>s</td>
+				<td class="text-center">s</td>
+				<td class="text-center">s</td>
+				<td class="text-center">s</td>
+				<td >s</td>
+				<td class="text-center">s</td>
 			</tr>
-			<% end %>
 		</table>
 		<table><!-- Code [3]-[1] && top=="1" -->
 			<caption class="doc-header">Необходимо выставить ценники (<%= (rep12 = report.details.select{|key, val| val.report_codes.include? 12}).size %> позиций)</caption>
@@ -165,7 +163,7 @@
             <%end%>
 		</table>
 		<table><!-- Code [9] -->
-			<caption class="doc-header">Необходимо сделать заказ (<%= (rep9 = report.details.select{|key, val| val.report_codes.include? 109}).size %> позиций)</caption>
+			<caption class="doc-header">Необходимо сделать заказ (<%= (rep9 = report.details.select{|key, val| val.report_codes.include? 9}).size %> позиций)</caption>
 			<col width=100></col><!-- LM-код -->
 			<col width=270></col><!-- Название -->
 			<col width=90></col><!-- Кол-во в БД -->
